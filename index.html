@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cal Hub – AI Calorie Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -20,30 +23,74 @@
             fontFamily: {
               sans: ["Inter", "ui-sans-serif", "system-ui"],
             },
+            animation: {
+              'fade-in': 'fadeIn 0.6s ease-out',
+              'slide-up': 'slideUp 0.6s ease-out',
+              'float': 'float 6s ease-in-out infinite',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              slideUp: {
+                '0%': { transform: 'translateY(20px)', opacity: '0' },
+                '100%': { transform: 'translateY(0)', opacity: '1' },
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0px)' },
+                '50%': { transform: 'translateY(-20px)' },
+              },
+            },
           },
         },
       };
     </script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-feature-settings: "kern" 1, "liga" 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      .gradient-text {
+        background: linear-gradient(135deg, #16a34a 0%, #10b981 50%, #14b8a6 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    </style>
   </head>
-  <body class="text-gray-800 bg-white">
+  <body class="text-gray-800 bg-white font-sans">
     <!-- Navbar -->
     <header
-      class="fixed top-0 w-full bg-white/80 backdrop-blur-md shadow-sm z-50"
+      class="fixed top-0 w-full bg-white/95 backdrop-blur-xl shadow-sm border-b border-gray-100 z-50 transition-all duration-300"
     >
       <div
-        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
+        class="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex justify-between items-center"
       >
-        <h1 class="text-2xl font-bold text-green-600">Cal Hub</h1>
-        <nav class="hidden md:flex space-x-8 text-sm font-medium">
-          <a href="#product" class="hover:text-green-600">Product</a>
-          <a href="#features" class="hover:text-green-600">Features</a>
-          <a href="#contact" class="hover:text-green-600">Contact</a>
+        <h1 class="text-2xl font-bold text-green-600 tracking-tight">Cal Hub</h1>
+        <nav class="hidden md:flex space-x-10 text-sm font-medium">
+          <a href="#product" class="text-gray-700 hover:text-green-600 transition-colors duration-200 relative group">
+            Product
+            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-600 transition-all duration-200 group-hover:w-full"></span>
+          </a>
+          <a href="#features" class="text-gray-700 hover:text-green-600 transition-colors duration-200 relative group">
+            Features
+            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-600 transition-all duration-200 group-hover:w-full"></span>
+          </a>
+          <a href="#contact" class="text-gray-700 hover:text-green-600 transition-colors duration-200 relative group">
+            Contact
+            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-600 transition-all duration-200 group-hover:w-full"></span>
+          </a>
         </nav>
         <a
           href="https://apps.apple.com/YOUR_APP_LINK_HERE"
           target="_blank"
           rel="noopener noreferrer"
-          class="hidden md:inline-flex items-center bg-black text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition space-x-2"
+          class="hidden md:inline-flex items-center bg-black text-white px-5 py-2.5 rounded-xl font-semibold hover:bg-gray-900 transition-all duration-200 space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
             <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
@@ -55,27 +102,40 @@
 
     <!-- Hero Section -->
     <section
-      class="bg-gradient-to-br from-green-600 via-emerald-500 to-teal-500 text-white min-h-screen flex flex-col justify-center"
+      class="relative bg-gradient-to-br from-green-600 via-emerald-500 to-teal-500 text-white min-h-screen flex flex-col justify-center overflow-hidden"
     >
+      <!-- Decorative background elements -->
+      <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
+      </div>
+      
       <div
-        class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 items-center gap-12 pt-32 pb-16"
+        class="relative max-w-7xl mx-auto px-6 lg:px-8 grid md:grid-cols-2 items-center gap-16 pt-32 pb-24"
       >
-        <div>
-          <h2 class="text-5xl md:text-6xl font-extrabold leading-tight mb-4">
+        <div class="animate-slide-up">
+          <div class="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+            </svg>
+            AI-Powered Nutrition Tracking
+          </div>
+          <h2 class="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 tracking-tight">
             AI-Powered Calorie Tracking
           </h2>
-          <p class="text-xl font-semibold text-green-100 mb-6">
+          <p class="text-xl md:text-2xl font-semibold text-green-50 mb-6 leading-relaxed">
             Just snap a photo — let AI do the counting.
           </p>
-          <p class="text-lg text-green-100 mb-8">
+          <p class="text-lg md:text-xl text-green-100 mb-10 leading-relaxed max-w-xl">
             Cal Hub uses advanced AI vision to instantly analyze your meals,
             estimate calories and macronutrients, and help you stay on track
             with visual analytics and progress charts.
           </p>
-          <div class="space-x-4">
+          <div class="flex flex-col sm:flex-row gap-4">
             <a
               href="#product"
-              class="bg-white text-green-700 font-semibold px-6 py-3 rounded-full hover:bg-green-100 transition"
+              class="inline-flex items-center justify-center bg-white text-green-700 font-semibold px-8 py-4 rounded-xl hover:bg-green-50 transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:scale-105"
             >
               Learn More
             </a>
@@ -83,7 +143,7 @@
               href="https://apps.apple.com/YOUR_APP_LINK_HERE"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center bg-black text-white font-semibold px-6 py-3 rounded-lg hover:bg-gray-800 transition space-x-3"
+              class="inline-flex items-center justify-center bg-black/90 backdrop-blur-sm text-white font-semibold px-8 py-4 rounded-xl hover:bg-black transition-all duration-200 space-x-3 shadow-xl hover:shadow-2xl transform hover:scale-105"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
@@ -96,157 +156,209 @@
           </div>
         </div>
 
-        <div class="relative max-w-md mx-auto p-4">
-          <img
-            src="./best_calorie_counter.jpg"
-            alt="Cal Hub AI Calorie Tracker - Main Dashboard"
-            class="w-full h-auto rounded-3xl shadow-2xl border border-white/30 object-contain"
-          />
-          <div
-            class="absolute inset-4 bg-gradient-to-t from-black/30 to-transparent rounded-3xl pointer-events-none"
-          ></div>
+        <div class="relative max-w-md mx-auto animate-float">
+          <div class="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-3xl blur-2xl transform rotate-6"></div>
+          <div class="relative p-6">
+            <img
+              src="./best_calorie_counter.jpg"
+              alt="Cal Hub AI Calorie Tracker - Main Dashboard"
+              class="w-full h-auto rounded-3xl shadow-2xl border-4 border-white/40 object-contain transform hover:scale-105 transition-transform duration-300"
+            />
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Product Section -->
-    <section id="product" class="py-24 bg-gray-50">
+    <section id="product" class="py-32 bg-gradient-to-b from-white to-gray-50">
       <div
-        class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center"
+        class="max-w-7xl mx-auto px-6 lg:px-8 grid md:grid-cols-2 gap-16 items-center"
       >
-        <div class="max-w-sm mx-auto p-4">
-          <img
-            src="./Analyse_your_meal.jpg"
-            alt="Cal Hub Meal Analysis - AI Food Recognition"
-            class="w-full h-auto rounded-3xl shadow-lg object-contain"
-          />
+        <div class="relative max-w-md mx-auto order-2 md:order-1">
+          <div class="absolute -inset-4 bg-gradient-to-br from-green-100 to-emerald-100 rounded-3xl blur-2xl opacity-50"></div>
+          <div class="relative p-6">
+            <img
+              src="./Analyse_your_meal.jpg"
+              alt="Cal Hub Meal Analysis - AI Food Recognition"
+              class="w-full h-auto rounded-3xl shadow-2xl object-contain transform hover:scale-105 transition-transform duration-300"
+            />
+          </div>
         </div>
-        <div>
-          <h3 class="text-3xl font-bold text-green-600 mb-4">
+        <div class="order-1 md:order-2">
+          <div class="inline-block mb-4 px-4 py-1.5 bg-green-100 text-green-700 rounded-full text-sm font-semibold">
+            Core Technology
+          </div>
+          <h3 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight tracking-tight">
             AI That Sees What You Eat
           </h3>
-          <p class="text-gray-600 mb-6 leading-relaxed">
-            Take a photo of your meal, and Cal Hub’s AI instantly detects
+          <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+            Take a photo of your meal, and Cal Hub's AI instantly detects
             ingredients, estimates calories, and breaks down macronutrients like
             proteins, carbs, and fats. Your entire nutrition log builds up
             automatically — no manual entry required.
           </p>
-          <ul class="space-y-3 text-gray-700">
-            <li>🤖 AI-based meal photo recognition</li>
-            <li>📈 Historical trends and meal history</li>
-            <li>📊 Visual charts for analytics and progress</li>
+          <ul class="space-y-4 text-gray-700">
+            <li class="flex items-start space-x-4">
+              <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center text-green-600 mt-0.5">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+              </div>
+              <span class="text-lg pt-1">AI-based meal photo recognition</span>
+            </li>
+            <li class="flex items-start space-x-4">
+              <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center text-green-600 mt-0.5">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                </svg>
+              </div>
+              <span class="text-lg pt-1">Historical trends and meal history</span>
+            </li>
+            <li class="flex items-start space-x-4">
+              <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center text-green-600 mt-0.5">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>
+              </div>
+              <span class="text-lg pt-1">Visual charts for analytics and progress</span>
+            </li>
           </ul>
         </div>
       </div>
     </section>
 
     <!-- Product Showcase Section -->
-    <section class="py-24 bg-white">
-      <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center mb-20 pt-8">
-          <h3 class="text-4xl font-bold text-green-600 mb-6">
+    <section class="py-32 bg-white">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="text-center mb-20">
+          <div class="inline-block mb-4 px-4 py-1.5 bg-green-100 text-green-700 rounded-full text-sm font-semibold">
+            App Features
+          </div>
+          <h3 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
             See Cal Hub in Action
           </h3>
-          <p class="text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Explore our intuitive interface designed to make calorie tracking effortless and engaging.
           </p>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           <!-- Progress Dashboard -->
-          <div class="text-center pt-4">
-            <div class="max-w-xs mx-auto mb-6 p-3">
-              <img
-                src="./Progress_dashboard.jpg"
-                alt="Cal Hub Progress Dashboard - Track Your Health Goals"
-                class="w-full h-auto rounded-2xl shadow-lg object-contain"
-              />
+          <div class="group text-center bg-gradient-to-br from-white to-gray-50 p-8 rounded-3xl border border-gray-100 hover:border-green-200 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="max-w-xs mx-auto mb-6 p-4">
+              <div class="relative">
+                <div class="absolute -inset-2 bg-gradient-to-br from-green-100 to-emerald-100 rounded-2xl blur opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+                <img
+                  src="./Progress_dashboard.jpg"
+                  alt="Cal Hub Progress Dashboard - Track Your Health Goals"
+                  class="relative w-full h-auto rounded-2xl shadow-xl object-contain transform group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
             </div>
-            <h4 class="text-lg font-semibold text-gray-800 mb-3">Progress Dashboard</h4>
-            <p class="text-gray-600 text-sm leading-relaxed">Visualize your calorie trends and health goals with interactive charts</p>
+            <h4 class="text-xl font-bold text-gray-900 mb-3">Progress Dashboard</h4>
+            <p class="text-gray-600 leading-relaxed">Visualize your calorie trends and health goals with interactive charts</p>
           </div>
 
           <!-- Meal History -->
-          <div class="text-center pt-4">
-            <div class="max-w-xs mx-auto mb-6 p-3">
-              <img
-                src="./meal_history.jpg"
-                alt="Cal Hub Meal History - Complete Nutrition Timeline"
-                class="w-full h-auto rounded-2xl shadow-lg object-contain"
-              />
+          <div class="group text-center bg-gradient-to-br from-white to-gray-50 p-8 rounded-3xl border border-gray-100 hover:border-green-200 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="max-w-xs mx-auto mb-6 p-4">
+              <div class="relative">
+                <div class="absolute -inset-2 bg-gradient-to-br from-green-100 to-emerald-100 rounded-2xl blur opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+                <img
+                  src="./meal_history.jpg"
+                  alt="Cal Hub Meal History - Complete Nutrition Timeline"
+                  class="relative w-full h-auto rounded-2xl shadow-xl object-contain transform group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
             </div>
-            <h4 class="text-lg font-semibold text-gray-800 mb-3">Meal History</h4>
-            <p class="text-gray-600 text-sm leading-relaxed">Browse your complete nutrition timeline with detailed meal breakdowns</p>
+            <h4 class="text-xl font-bold text-gray-900 mb-3">Meal History</h4>
+            <p class="text-gray-600 leading-relaxed">Browse your complete nutrition timeline with detailed meal breakdowns</p>
           </div>
 
           <!-- Settings & Customization -->
-          <div class="text-center pt-4">
-            <div class="max-w-xs mx-auto mb-6 p-3">
-              <img
-                src="./settings_app.jpg"
-                alt="Cal Hub Settings - Personalize Your Experience"
-                class="w-full h-auto rounded-2xl shadow-lg object-contain"
-              />
+          <div class="group text-center bg-gradient-to-br from-white to-gray-50 p-8 rounded-3xl border border-gray-100 hover:border-green-200 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 md:col-span-2 lg:col-span-1">
+            <div class="max-w-xs mx-auto mb-6 p-4">
+              <div class="relative">
+                <div class="absolute -inset-2 bg-gradient-to-br from-green-100 to-emerald-100 rounded-2xl blur opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+                <img
+                  src="./settings_app.jpg"
+                  alt="Cal Hub Settings - Personalize Your Experience"
+                  class="relative w-full h-auto rounded-2xl shadow-xl object-contain transform group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
             </div>
-            <h4 class="text-lg font-semibold text-gray-800 mb-3">Smart Settings</h4>
-            <p class="text-gray-600 text-sm leading-relaxed">Customize your goals, preferences, and notification settings</p>
+            <h4 class="text-xl font-bold text-gray-900 mb-3">Smart Settings</h4>
+            <p class="text-gray-600 leading-relaxed">Customize your goals, preferences, and notification settings</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="py-24 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-6 text-center">
-        <h3 class="text-4xl font-bold text-green-600 mb-4">
-          Powerful Features Built with AI
-        </h3>
-        <p class="text-gray-600 max-w-2xl mx-auto mb-12">
-          Cal Hub combines computer vision, data analytics, and smart tracking
-          tools to make nutrition management effortless.
-        </p>
+    <section id="features" class="py-32 bg-gradient-to-b from-gray-50 to-white">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="text-center mb-20">
+          <div class="inline-block mb-4 px-4 py-1.5 bg-green-100 text-green-700 rounded-full text-sm font-semibold">
+            Key Features
+          </div>
+          <h3 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
+            Powerful Features Built with AI
+          </h3>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            Cal Hub combines computer vision, data analytics, and smart tracking
+            tools to make nutrition management effortless.
+          </p>
+        </div>
 
-        <div class="grid md:grid-cols-3 gap-10">
+        <div class="grid md:grid-cols-3 gap-8">
           <div
-            class="bg-white p-8 rounded-3xl shadow hover:shadow-lg transition transform hover:-translate-y-1"
+            class="group bg-white p-10 rounded-3xl border border-gray-100 hover:border-green-200 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
           >
             <div
-              class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-green-100 text-green-600 rounded-full text-3xl"
+              class="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-gradient-to-br from-green-100 to-green-50 text-green-600 rounded-2xl shadow-lg group-hover:scale-110 transition-transform duration-300"
             >
-              🤖
+              <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+              </svg>
             </div>
-            <h4 class="text-xl font-semibold mb-2">AI Meal Recognition</h4>
-            <p class="text-gray-600">
+            <h4 class="text-2xl font-bold text-gray-900 mb-4 text-center">AI Meal Recognition</h4>
+            <p class="text-gray-600 text-center leading-relaxed">
               Instantly analyze photos of your meals for calories and nutrients
               using advanced AI models.
             </p>
           </div>
 
           <div
-            class="bg-white p-8 rounded-3xl shadow hover:shadow-lg transition transform hover:-translate-y-1"
+            class="group bg-white p-10 rounded-3xl border border-gray-100 hover:border-emerald-200 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
           >
             <div
-              class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-emerald-100 text-emerald-600 rounded-full text-3xl"
+              class="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-gradient-to-br from-emerald-100 to-emerald-50 text-emerald-600 rounded-2xl shadow-lg group-hover:scale-110 transition-transform duration-300"
             >
-              📊
+              <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
             </div>
-            <h4 class="text-xl font-semibold mb-2">Analytics Dashboard</h4>
-            <p class="text-gray-600">
+            <h4 class="text-2xl font-bold text-gray-900 mb-4 text-center">Analytics Dashboard</h4>
+            <p class="text-gray-600 text-center leading-relaxed">
               Get charts and visual reports on your calorie trends, macros, and
               goals over time.
             </p>
           </div>
 
           <div
-            class="bg-white p-8 rounded-3xl shadow hover:shadow-lg transition transform hover:-translate-y-1"
+            class="group bg-white p-10 rounded-3xl border border-gray-100 hover:border-teal-200 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
           >
             <div
-              class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-teal-100 text-teal-600 rounded-full text-3xl"
+              class="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-gradient-to-br from-teal-100 to-teal-50 text-teal-600 rounded-2xl shadow-lg group-hover:scale-110 transition-transform duration-300"
             >
-              🕓
+              <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
             </div>
-            <h4 class="text-xl font-semibold mb-2">Meal History</h4>
-            <p class="text-gray-600">
+            <h4 class="text-2xl font-bold text-gray-900 mb-4 text-center">Meal History</h4>
+            <p class="text-gray-600 text-center leading-relaxed">
               Access your entire eating history with timestamps and detailed
               nutrition breakdowns.
             </p>
@@ -256,15 +368,24 @@
     </section>
 
     <!-- Download Section -->
-    <section id="download" class="py-24 bg-white">
-      <div class="max-w-4xl mx-auto px-6 text-center">
-        <h3 class="text-4xl font-bold text-green-600 mb-6">
+    <section id="download" class="py-32 bg-gradient-to-br from-green-600 via-emerald-500 to-teal-500 text-white relative overflow-hidden">
+      <!-- Decorative background elements -->
+      <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute top-20 left-20 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 right-20 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div class="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
+        <div class="inline-block mb-6 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold">
+          Available Now
+        </div>
+        <h3 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
           Get Cal Hub Today
         </h3>
-        <p class="text-gray-600 mb-8 text-lg">
+        <p class="text-xl md:text-2xl text-green-50 mb-4 leading-relaxed max-w-2xl mx-auto">
           Start your AI-powered nutrition journey. Available now on the App Store.
         </p>
-        <p class="text-sm text-gray-500 mb-12">
+        <p class="text-sm text-green-100 mb-12">
           All download buttons throughout the site link directly to the App Store.
         </p>
         
@@ -273,9 +394,9 @@
           href="https://apps.apple.com/YOUR_APP_LINK_HERE"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center bg-black text-white font-semibold px-8 py-4 rounded-xl hover:bg-gray-800 transition space-x-4 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+          class="inline-flex items-center bg-black/90 backdrop-blur-sm text-white font-semibold px-10 py-5 rounded-2xl hover:bg-black transition-all duration-200 space-x-4 shadow-2xl hover:shadow-3xl transform hover:scale-105 mb-8"
         >
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
             <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
           </svg>
           <div class="text-left">
@@ -284,39 +405,45 @@
           </div>
         </a>
 
-        <p class="text-sm text-gray-500 mt-6">
+        <p class="text-sm text-green-100">
           Compatible with iPhone and iPad • iOS 14.0 or later
         </p>
       </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="bg-gray-50 py-24">
-      <div class="max-w-3xl mx-auto px-6 text-center">
-        <h3 class="text-4xl font-bold text-green-600 mb-4">Get in Touch</h3>
-        <p class="text-gray-700 mb-8">
+    <section id="contact" class="bg-white py-32">
+      <div class="max-w-3xl mx-auto px-6 lg:px-8 text-center">
+        <div class="inline-block mb-4 px-4 py-1.5 bg-green-100 text-green-700 rounded-full text-sm font-semibold">
+          Contact Us
+        </div>
+        <h3 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">Get in Touch</h3>
+        <p class="text-lg text-gray-600 mb-10 leading-relaxed max-w-xl mx-auto">
           Have feedback, partnership ideas, or want to integrate our AI engine?
           Reach out anytime.
         </p>
         <a
           href="mailto:ishacorporations+support@gmail.com"
-          class="inline-block bg-green-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-green-700 transition"
+          class="inline-flex items-center bg-green-600 text-white px-10 py-4 rounded-xl font-semibold hover:bg-green-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
         >
+          <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+          </svg>
           ishacorporations+support@gmail.com
         </a>
       </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-green-600 text-white py-8">
-      <div
-        class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center"
-      >
-        <p class="mb-4 md:mb-0">&copy; 2025 Cal Hub. All rights reserved.</p>
-        <div class="space-x-4">
-          <a href="#" class="hover:text-green-200">Twitter</a>
-          <a href="#" class="hover:text-green-200">Instagram</a>
-          <a href="#" class="hover:text-green-200">Facebook</a>
+    <footer class="bg-gradient-to-br from-green-700 via-green-600 to-emerald-600 text-white py-12">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="mb-4 md:mb-0 text-green-50 font-medium">&copy; 2025 Cal Hub. All rights reserved.</p>
+          <div class="flex space-x-6">
+            <a href="#" class="text-green-100 hover:text-white transition-colors duration-200 font-medium">Twitter</a>
+            <a href="#" class="text-green-100 hover:text-white transition-colors duration-200 font-medium">Instagram</a>
+            <a href="#" class="text-green-100 hover:text-white transition-colors duration-200 font-medium">Facebook</a>
+          </div>
         </div>
       </div>
     </footer>
